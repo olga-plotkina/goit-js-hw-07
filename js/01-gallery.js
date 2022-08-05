@@ -37,10 +37,18 @@ const openModalOnclick = (event) => {
     
     instance.show();
 
-    if (basicLightbox.visible) {
-        const modalRef = document.querySelector('.modal');
-        modalRef.addEventListener('click', (event) => {
+    const modalRef = document.querySelector('.modal');
+    
+    modalRef.addEventListener('click', () => {
             instance.close()}); 
+
+    if (basicLightbox.visible) {
+        
+        document.addEventListener('keydown', ({key}) => {
+            if (key === 'Escape') {
+                instance.close()
+            }
+        })
     }
 }
 
