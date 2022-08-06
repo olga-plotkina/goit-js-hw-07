@@ -21,14 +21,16 @@ const renderGallery = (galleryItems) => {
 galleryDiv.innerHTML = renderGallery(galleryItems);
 
 
-const onEscapeClose = ({key}) => {
-    if (key === 'Escape') {
-        instance.close()
-    }
-}
+
 
 const openModalOnclick = (event) => {
     event.preventDefault();
+
+    const onEscapeClose = ({key}) => {
+        if (key === 'Escape') {
+            instance.close()
+        }
+    }
 
     const instance = basicLightbox.create(
         `
@@ -37,8 +39,8 @@ const openModalOnclick = (event) => {
         src="${event.target.dataset.source}">
         </div>
         `, 
-        {onShow: (instance) => window.addEventListener('keydown', onEscapeClose(event)),
-         onClose: (instance) => window.removeEventListener('keydown', onEscapeClose(event))
+        {onShow: (instance) => instance.element().addEventListener('keydown', onEscapeClose(event)),
+         onClose: (instance) => instance.element().removeEventListener('keydown', onEscapeClose(event))
         });
 
     instance.show();
