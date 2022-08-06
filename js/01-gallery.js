@@ -20,9 +20,6 @@ const renderGallery = (galleryItems) => {
 
 galleryDiv.innerHTML = renderGallery(galleryItems);
 
-
-
-
 const openModalOnclick = (event) => {
     event.preventDefault();
 
