@@ -39,8 +39,8 @@ const openModalOnclick = (event) => {
         src="${event.target.dataset.source}">
         </div>
         `, 
-        {onShow: (instance) => window.addEventListener('keydown', onEscapeClose)
-        //  onClose: (instance) => instance.element().removeEventListener('keydown', onEscapeClose(event))
+        {onShow: (instance) => window.addEventListener('keydown', onEscapeClose),
+         onClose: (instance) => window.removeEventListener('keydown', onEscapeClose)
         });
 
     instance.show();
@@ -50,14 +50,6 @@ const openModalOnclick = (event) => {
     // modalRef.addEventListener('click', () => {
     //         instance.close()}); 
 
-    // if (basicLightbox.visible) {
-        
-    //     document.addEventListener('keydown', ({key}) => {
-    //         if (key === 'Escape') {
-    //             instance.close()
-    //         }
-    //     })
-    // }
 }
 
 galleryDiv.addEventListener('click', openModalOnclick);
