@@ -39,8 +39,8 @@ const openModalOnclick = (event) => {
         src="${event.target.dataset.source}">
         </div>
         `, 
-        {onShow: (instance) => instance.element().addEventListener('keydown', onEscapeClose(event)),
-         onClose: (instance) => instance.element().removeEventListener('keydown', onEscapeClose(event))
+        {onShow: (instance) => window.addEventListener('keydown', onEscapeClose)
+        //  onClose: (instance) => instance.element().removeEventListener('keydown', onEscapeClose(event))
         });
 
     instance.show();
