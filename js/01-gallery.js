@@ -18,7 +18,7 @@ const renderGallery = (galleryItems) => {
     `).join('');
 };
 
-galleryDiv.innerHTML = renderGallery(galleryItems);``
+galleryDiv.innerHTML = renderGallery(galleryItems);
 
 const openModalOnclick = (event) => {
     event.preventDefault();
