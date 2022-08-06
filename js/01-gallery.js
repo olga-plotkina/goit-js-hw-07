@@ -20,36 +20,42 @@ const renderGallery = (galleryItems) => {
 
 galleryDiv.innerHTML = renderGallery(galleryItems);
 
-// const imageRef = document.querySelector('.gallery__image');
 
-
+const onEscapeClose = ({key}) => {
+    if (key === 'Escape') {
+        instance.close()
+    }
+}
 
 const openModalOnclick = (event) => {
     event.preventDefault();
 
-    const instance = basicLightbox.create(`
-    <div class="modal">
-    <img
-    src="${event.target.dataset.source}">
-    </div>
-`, {closable: true});
+    const instance = basicLightbox.create(
+        `
+        <div class="modal">
+        <img
+        src="${event.target.dataset.source}">
+        </div>
+        `, 
+        {onShow: (instance) => window.addEventListener('keydown', onEscapeClose(event)),
+         onClose: (instance) => window.removeEventListener('keydown', onEscapeClose(event))
+        });
 
-    
     instance.show();
 
-    const modalRef = document.querySelector('.modal');
+    // const modalRef = document.querySelector('.modal');
     
-    modalRef.addEventListener('click', () => {
-            instance.close()}); 
+    // modalRef.addEventListener('click', () => {
+    //         instance.close()}); 
 
-    if (basicLightbox.visible) {
+    // if (basicLightbox.visible) {
         
-        document.addEventListener('keydown', ({key}) => {
-            if (key === 'Escape') {
-                instance.close()
-            }
-        })
-    }
+    //     document.addEventListener('keydown', ({key}) => {
+    //         if (key === 'Escape') {
+    //             instance.close()
+    //         }
+    //     })
+    // }
 }
 
 galleryDiv.addEventListener('click', openModalOnclick);
